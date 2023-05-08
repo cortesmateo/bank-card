@@ -9,3 +9,9 @@ spring:
     username: system
     password: Luna6031561
     driverClassName: oracle.jdbc.OracleDriver
+  jpa:
+    properties:
+        hibernate:
+          dialect: org.hibernate.dialect.Oracle10gDialect
+    show-sql: true
+    generate-ddl: false
