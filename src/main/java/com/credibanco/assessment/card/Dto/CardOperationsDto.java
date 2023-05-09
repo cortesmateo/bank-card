@@ -22,5 +22,6 @@ public class CardOperationsDto {
     @NotNull
     private String adressOperation;
 
-
+    public CardOperationsDto() {
+    }
 }

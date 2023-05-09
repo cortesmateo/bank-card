@@ -1,0 +1,22 @@
+.table-container {
+    margin: auto;
+    width: 80%;
+  }
+  
+  .mat-column-numberPan,
+  .mat-column-name,
+  .mat-column-transactions {
+    text-align: center;
+  }
+  
+  .mat-row {
+    height: 48px;
+  }
+  .example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }

@@ -3,15 +3,22 @@ package com.credibanco.assessment.card.Controller;
 import com.credibanco.assessment.card.Dto.*;
 import com.credibanco.assessment.card.Exception.*;
 import com.credibanco.assessment.card.Model.CardBank;
+import com.credibanco.assessment.card.Model.CardOperations;
 import com.credibanco.assessment.card.Service.CardOperationService;
 import com.credibanco.assessment.card.Service.CardService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
+@Api(value = "Operaciones para las tarjetas", tags = {"v1: Realiza diferentes operacion para las tarjetas"})
 public class CardBankController {
 
     private CardService cardService;
@@ -22,6 +29,7 @@ public class CardBankController {
         this.cardOperationService = cardOperationService;
     }
 
+    @ApiOperation(value = "Creacion de la tarjeta de credito", response = CardBankPayload.class)
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("/create")
     public ResponseEntity<CardBankPayload> createCard(@Valid @RequestBody CardBankDto cardBankRequestDto) {
@@ -34,6 +42,7 @@ public class CardBankController {
         return new ResponseEntity<>(response, status);
     }
 
+    @ApiOperation(value = "Creacion de la transaccion para la tarjeta de credito", response = CardOperationsPayload.class)
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("/createOperation")
     public ResponseEntity<CardOperationsPayload> createOperation(@RequestBody CardOperationsDto cardOperationsDto) {
@@ -44,6 +53,7 @@ public class CardBankController {
 
 
 
+    @ApiOperation(value = "Activa la tarjeta", response = CardBankPayload.class)
     @PutMapping("/activate")
     public ResponseEntity<ActivateCardPayload> enrollCard(@RequestBody ActivateCardDto activateCardDto) {
         try{
@@ -62,6 +72,7 @@ public class CardBankController {
         }
     }
 
+    @ApiOperation(value = "Obtiene la tarjeta de acuerdo el numero de PAN", response = CardBankPayload.class)
     @GetMapping("/card/{numberPan}")
     public ResponseEntity<CardBankDto> getCardBank(@PathVariable String numberPan){
         CardBank exists = cardService.findByNumberPan(numberPan);
@@ -77,6 +88,7 @@ public class CardBankController {
     }
 
 
+    @ApiOperation(value = "Elimina la tarjeta de credito", response = ActivateCardPayload.class)
     @DeleteMapping("/deletecard")
     public ResponseEntity<ActivateCardPayload> deleteCard(@RequestBody ActivateCardDto activateCardDto) {
         try {
@@ -93,7 +105,21 @@ public class CardBankController {
         }
     }
 
+    @GetMapping("/card/operation/{numberPan}")
+    public ResponseEntity<List<CardOperationsDto>> getCardBankOperation(@PathVariable String numberPan){
+        List<CardOperations> operations = cardOperationService.findByNumberPan(numberPan);
+        List<CardOperationsDto> operationDtos = new ArrayList<>();
 
+        for (CardOperations operation : operations) {
+            CardOperationsDto operationDto = new CardOperationsDto();
+            operationDto.setNumberPan(operation.getNumberPan());
+            operationDto.setAdressOperation(operation.getAdressOperation());
+            operationDto.setTotalAmount(operation.getTotalAmount());
+            operationDto.setNumberReference(operation.getReferenceNumber());
+            operationDtos.add(operationDto);
+        }
+        return new ResponseEntity<>(operationDtos,HttpStatus.OK);
+    }
 
     private String maskPAN(String pan) {
         return pan.substring(0, 6) + "****" + pan.substring(pan.length() - 4);

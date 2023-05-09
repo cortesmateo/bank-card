@@ -1,0 +1,17 @@
+<div class="d-flex justify-content-center">
+  <mat-card class="example-card mat-card-flex-center">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ card.name }}</mat-card-title>
+      <mat-card-subtitle>{{ card.numberPan }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src='../../assets/img/visa.png' alt="Visa Card">
+    <mat-card-content>
+      <mat-card-subtitle>Cell phone {{card.cellPhone}}</mat-card-subtitle>
+      <mat-card-subtitle>Cell phone {{card.documentNumber}}</mat-card-subtitle>
+      <mat-card-subtitle>Estado de la tarjeta {{ card.statusCard === 0 ? 'Desactivado' : 'Activado' }}</mat-card-subtitle>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>VER MOVIMIENTOS</button>
+    </mat-card-actions>
+  </mat-card>

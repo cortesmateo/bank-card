@@ -13,5 +13,8 @@ spring:
     properties:
         hibernate:
           dialect: org.hibernate.dialect.Oracle10gDialect
-    show-sql: true
+    show-sql: false
     generate-ddl: false
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

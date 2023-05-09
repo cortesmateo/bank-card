@@ -13,6 +13,7 @@ import oracle.sql.DATE;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class CardOperationServiceImpl implements CardOperationService {
@@ -51,6 +52,11 @@ public class CardOperationServiceImpl implements CardOperationService {
         cardOperations.setDateOperation("10-10-2023");
         cardOperationsRepository.save(cardOperations);
         return new CardOperationsPayload("00","Exito","Aprobada", cardOperations.getReferenceNumber());
+    }
+
+    @Override
+    public List<CardOperations> findByNumberPan(String numberPan) {
+       return cardOperationsRepository.findBynumberPan(numberPan);
     }
 
     @Override
