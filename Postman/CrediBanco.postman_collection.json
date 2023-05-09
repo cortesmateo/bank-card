@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "a510236e-800c-48e1-8af1-3f5c52a4ee01",
+		"name": "CrediBanco",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13365869"
+	},
+	"item": [
+		{
+			"name": "CreateCardBank",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numberPan\":\"123456781119\",\r\n    \"name\":\"mateo cortes\",\r\n    \"documentNumber\":\"1020833279\",\r\n    \"cardType\":\"3\",\r\n    \"cellPhone\":\"32142811\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/bank/v1/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"bank",
+						"v1",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateOperation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numberPan\":\"123456781111\",\r\n    \"numberReference\":\"125\",\r\n    \"totalAmount\":\"100000\",\r\n    \"adressOperation\":\"Bogota\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/bank/v1/createOperation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"bank",
+						"v1",
+						"createOperation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ActivateCardBank",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numberPan\":\"123456781113\",\r\n    \"validationNumber\":\"55\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/bank/v1/activate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"bank",
+						"v1",
+						"activate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCardBank",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/bank/v1/card/123456781111",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"bank",
+						"v1",
+						"card",
+						"123456781111"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteCardBank",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numberPan\":\"123456781113\",\r\n    \"validationNumber\":\"55\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/bank/v1/deletecard",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"bank",
+						"v1",
+						"deletecard"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
